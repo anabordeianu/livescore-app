@@ -15,8 +15,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Meciuri extends AppCompatActivity {
 
@@ -59,7 +66,41 @@ public class Meciuri extends AppCompatActivity {
             public void onResponse(String response) {
             pd.dismiss();
             try {
+                JSONArray jsonArray= new JSONObject(response).getJSONArray("matches");
+                for(int i=0;i<jsonArray.length();i++){
+                    try {
+                        String uniqueID= jsonArray.getJSONObject(i).getString("unique_id");
+                        String gazde= jsonArray.getJSONObject(i).getString("team-1");
+                        String oaspeti= jsonArray.getJSONObject(i).getString("team-2");
+                        String meciTip= jsonArray.getJSONObject(i).getString("type");
+                        String status= jsonArray.getJSONObject(i).getString("matchStarted");
+                        if (status.equals("true")) {
+                            status = "Meciul a inceput";
+                        }
+                        else
+                        {
+                            status="Meciul nu a inceput";
+                        }
+                        String TimpGMT=jsonArray.getJSONObject(i).getString("dateTimeGMT");
+                        SimpleDateFormat format1=new SimpleDateFormat(" yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                        format1.setTimeZone(TimeZone.getTimeZone(TimpGMT));
+                        Date data = format1.parse(TimpGMT);
+                        //conversia la formatul zi/luna/an
+                        SimpleDateFormat format2=new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                        format2.setTimeZone(TimeZone.getTimeZone("GMT"));
+                        String dateTime=format2.format(data);
 
+                        //seteaza data
+
+                        Model model=new Model(uniqueID,gazde, oaspeti, meciTip, status, dateTime);
+                        modelList.add(model);
+                    }
+                    catch (Exception e){
+                        Toast.makeText(Meciuri.this," "+e.getMessage(),Toast.LENGTH_SHORT);
+                    }
+                }
+                mAdapter=new Adaptor(modelList,getApplicationContext());
+                mRecyclerView.setAdapter(mAdapter);
             }
             catch (Exception e){
                 Toast.makeText(Meciuri.this,""+e.getMessage(),Toast.LENGTH_SHORT).show();

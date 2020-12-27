@@ -67,11 +67,12 @@ public class Adaptor extends RecyclerView.Adapter<Adaptor.ViewHolder> {
        public ViewHolder(@NonNull View itemView){
            super(itemView);
            //initializarea obiectelor view
-           itemView.findViewById(R.id.gazde_tv);
-           itemView.findViewById(R.id.oaspeti_tv);
-           itemView.findViewById(R.id.tipMeci_tv);
-           itemView.findViewById(R.id.statusMeci_tv);
-           itemView.findViewById(R.id.dataMeci_tv);
+           gazde_tv= itemView.findViewById(R.id.gazde_tv);
+           oaspeti_tv=itemView.findViewById(R.id.oaspeti_tv);
+           tipMeci_tv= itemView.findViewById(R.id.tipMeci_tv);
+           statusMeci_tv= itemView.findViewById(R.id.statusMeci_tv);
+           dataMeci_tv= itemView.findViewById(R.id.dataMeci_tv);
+           cardView=itemView.findViewById(R.id.cardView);
        }
     }
 }
