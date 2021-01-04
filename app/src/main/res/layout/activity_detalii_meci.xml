@@ -32,6 +32,7 @@
                     android:id="@+id/gazde_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     />
             </TableRow>
 
@@ -46,6 +47,7 @@
                     android:id="@+id/oaspeti_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     />
             </TableRow>
 
@@ -61,7 +63,9 @@
                 <TextView
                     android:id="@+id/meciStatus_tv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
             </TableRow>
             <TableRow>
                 <TextView
@@ -74,6 +78,7 @@
                     android:id="@+id/scor_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     />
             </TableRow>
             <TableRow>
@@ -86,7 +91,9 @@
                 <TextView
                     android:id="@+id/descriere_tv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
             </TableRow>
             <TableRow>
                 <TextView
@@ -99,6 +106,7 @@
                     android:id="@+id/dataMeci_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     />
             </TableRow>
         </TableLayout>
