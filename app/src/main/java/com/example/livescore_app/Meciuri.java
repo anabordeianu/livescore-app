@@ -42,7 +42,7 @@ public class Meciuri extends AppCompatActivity {
 
         //recyclerView
         mRecyclerView=findViewById(R.id.recyclerView);
-        //setam proprietatile
+        //setarea proprietatilor
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 

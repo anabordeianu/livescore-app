@@ -1,6 +1,7 @@
 package com.example.livescore_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,7 @@ public class Adaptor extends RecyclerView.Adapter<Adaptor.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //metoda care va aduce datele meciurilor in viewHolder
-        Model model = modelList.get(position);
+        final Model model = modelList.get(position);
         holder.gazde_tv.setText(model.getEchipa1());
         holder.oaspeti_tv.setText(model.getEchipa2());
         holder.tipMeci_tv.setText(model.getTipMeci());
@@ -50,7 +51,14 @@ public class Adaptor extends RecyclerView.Adapter<Adaptor.ViewHolder> {
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //mai tarziu de facut
+                String matchId=model.getId();
+                String data =model.getDataMeci();
+
+                Intent intent =new Intent(context, DetaliiMeci.class);
+                intent.putExtra("meci_id",matchId);
+                intent.putExtra("data",data);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
     }
